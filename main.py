@@ -92,47 +92,49 @@ class Tictactoe:
 
     @staticmethod
     def minmaxmove(players, board, depth, maximize):  # players = [ai_player, player]
-        result = Tictactoe.get_result(board)
-        if result:
-            if result == players[0]:
-                return 10 - depth
-            elif result == players[1]:
-                return -10 + depth
+        return randrange(len(board)**2)
+        # result = Tictactoe.get_result(board)
+        # if result:
+        #     if result == players[0]:
+        #         return 10 - depth
+        #     elif result == players[1]:
+        #         return -10 + depth
         
-        moves = Tictactoe.possible_moves(board)
+        # moves = Tictactoe.possible_moves(board)
 
-        if len(moves) == 0:
-            print("Draw")
-            return 0
+        # if len(moves) == 0:
+        #     print("Draw")
+        #     return 0
 
-        if maximize:
-            minmaxscore = -math.inf
-            best_move = None
-            for i in moves:
-                board_copy = Tictactoe.clone_board(board)
-                board_row = board_copy[i // len(board_copy)]
-                cell_index = board_row.index(i)
-                board_row[cell_index] = players[0] # make the move
-                score = Tictactoe.minmaxmove(players, board, depth + 1, maximize)
-                if score > minmaxscore:
-                    minmaxscore = score
-                    best_move = i
-        elif not maximize:
-            minmaxscore = math.inf
-            best_move = None
-            for i in moves:
-                board_copy = Tictactoe.clone_board(board)
-                board_row = board_copy[i // len(board_copy)]
-                cell_index = board_row.index(i)
-                board_row[cell_index] = players[0] # make the move
-                score = Tictactoe.minmaxmove(players, board, depth + 1, maximize)
-                if score < minmaxscore:
-                    minmaxscore = score
-                    best_move = i
-        if depth == 0:
-            return best_move
-        else:
-            return minmaxscore
+        # if maximize:
+        #     minmaxscore = -math.inf
+        #     best_move = None
+        #     for i in moves:
+        #         board_copy = Tictactoe.clone_board(board)
+        #         board_row = board_copy[i // len(board_copy)]
+        #         cell_index = board_row.index(i)
+        #         board_row[cell_index] = players[0] # make the move
+        #         score = Tictactoe.minmaxmove(players, board, depth + 1, maximize)
+
+        #         if score > minmaxscore:
+        #             minmaxscore = score
+        #             best_move = i
+        # elif not maximize:
+        #     minmaxscore = math.inf
+        #     best_move = None
+        #     for i in moves:
+        #         board_copy = Tictactoe.clone_board(board)
+        #         board_row = board_copy[i // len(board_copy)]
+        #         cell_index = board_row.index(i)
+        #         board_row[cell_index] = players[0] # make the move
+        #         score = Tictactoe.minmaxmove(players, board, depth + 1, maximize)
+        #         if score < minmaxscore:
+        #             minmaxscore = score
+        #             best_move = i
+        # if depth == 0:
+        #     return best_move
+        # else:
+        #     return minmaxscore
 
     @staticmethod
     def possible_moves(board):
